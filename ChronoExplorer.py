@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtCore import *
-from PyQt5.QtCore.QUrl import QUrl
+from PyQt5.QtCore.QUrl import url
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import QIcon
@@ -96,6 +96,16 @@ class MainWindow(QMainWindow):
             # Removes the tab and deletes its browser widgets as well.
             self.tabs.removeTab(index)
             browser_widget.deleteLater()
+
+    def navigate_home(self):
+        self.current_browser().setUrl(QUrl('https://www.google.com'))
+
+    def navigate_to_url(self):
+        url = self.url_bar.text()
+        if 'http' not in url:
+            url = 'https://' + url
+        self.current_browser().setUrl(QUrl(url))
+
 
 
 
