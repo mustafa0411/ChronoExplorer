@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
 
         # Window Properties
         self.setWindowTitle('ChronoExplorer')  # Silly ahh name
-        self.setWindowIcon(QIcon('icon.png'))  # Will replace with something soon
+        self.setWindowIcon(QIcon('Compass_icon.png'))  # Will replace with something soon
 
         # Explorer tab widgets
         self.tabs = QTabWidget()
