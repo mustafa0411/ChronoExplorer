@@ -1,6 +1,7 @@
 import sys
 
 from PyQt5.QtCore import *
+from PyQt5.QtCore.QUrl import QUrl
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtGui import QIcon
@@ -69,15 +70,34 @@ class MainWindow(QMainWindow):
     # Methods for the implementation of the browser functionality
     def add_tab(self):
         browser = QWebEngineView()
-        browser.setUrl(QUrl('https://google.com'))
-        self.tabs.addTab(browser, 'New Tab')
+        browser.setUrl(QUrl('https://google.com')) # Main URL, for homepage as well
+        self.tabs.addTab(browser, 'New Tab') # Creates a new tab using the keyword
         self.tabs.setCurrentWidget(browser)
         self.tabs.setTableText(self.tabs.currentIndex(), 'Loading...')
-        browser.titleChanged().connect(
-            lambda title, new_browser = browser: self.tabs.setTabText(self.tabs.indexOf(browser), title))
+        browser.titleChanged().connect( # Tab Title changes that gets set depending on the website or title of the page
+            lambda title, new_browser=browser: self.tabs.setTabText(self.tabs.indexOf(browser), title))
         browser.urlChanged.connect(
-            lambda title, new_browser = browser: self.update_url(url) if self.tabs.currentWidget() == browser else None
-        )
+            lambda title, new_browser=browser: self.update_url(url) if self.tabs.currentWidget() == browser else None)
+
+
+    def close_tab(self, index):
+        # Gets the browser widget at the specific index
+        browser_widget = self.tabs.widget(index)
+
+        # Condition for playing video, pause function. could add other video streaming platforms as well
+        if browser_widget.url().host() == 'www.youtube.com': # Uses javascript to pause the video on youtube
+            browser_widget.page().runJavaScript("document.getElementsByTagName('video')[0].pause();") # Ok this is lowkey poggers
+
+
+        # closing tab functionality for last tabs
+        if self.tabs.count() < 2: # Close the whole window if the close tab button is pressed for the last tab
+            self.close()
+        else:
+            # Removes the tab and deletes its browser widgets as well.
+            self.tabs.removeTab(index)
+            browser_widget.deleteLater()
+
+
 
 
 
