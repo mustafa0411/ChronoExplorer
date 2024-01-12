@@ -1,4 +1,5 @@
 import sys
+
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import *
@@ -9,6 +10,8 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
+
+        # These are the UI funcitonalities and what happens when they are interacted with
 
         # Window Properties
         self.setWindowTitle('ChronoExplorer') # Silly ahh name
@@ -23,6 +26,8 @@ class MainWindow(QMainWindow):
         # Browser toolbar, think 3 lines at top right
         toolbar = QToolBar()
         self.addToolBar(toolbar)
+
+        # These are all the buttons that are common in most browsers
 
         # Back button
         back_btn = QAction('⮜', self) # back button that takes you to the last state
@@ -60,6 +65,19 @@ class MainWindow(QMainWindow):
         # First tab for the browser
         self.add_tab()
 
+
+    # Methods for the implementation of the browser functionality
+    def add_tab(self):
+        browser = QWebEngineView()
+        browser.setUrl(QUrl('https://google.com'))
+        self.tabs.addTab(browser, 'New Tab')
+        self.tabs.setCurrentWidget(browser)
+        self.tabs.setTableText(self.tabs.currentIndex(), 'Loading...')
+        browser.titleChanged().connect(
+            lambda title, new_browser = browser: self.tabs.setTabText(self.tabs.indexOf(browser), title))
+        browser.urlChanged.connect(
+            lambda title, new_browser = browser: self.update_url(url) if self.tabs.currentWidget() == browser else None
+        )
 
 
 
