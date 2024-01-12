@@ -40,9 +40,32 @@ class MainWindow(QMainWindow):
         toolbar.addAction(reload_btn)
 
         # Home BUtton
-        home_btn = QAction('⌂', self)
+        home_btn = QAction('⌂', self) # Sends you to a specific page that basically starts you over
         home_btn.triggered.connect(self.navigate_home)
         toolbar.addAction(home_btn)
+
+        # Add tab utton
+        add_tab_btn = QAction('+', self) # Create a new tab with the same funcitons
+        add_tab_btn.triggered.connect(self.add_tab)
+        toolbar.addAction(add_tab_btn)
+
+
+        # URL search bar code
+        self.url_bar = QLineEdit()
+        self.url_bar.returnPressed.connect(self.navigate_to_url) # URL bar to search for websites
+        toolbar.addWidget(self.url_bar)
+        self.current_browser().urlChanged.connect(self.update_url)
+
+
+        # First tab for the browser
+        self.add_tab()
+
+
+
+
+
+
+
 
 
 
