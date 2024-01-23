@@ -42,7 +42,7 @@ This will launch the ChronoExplorer browser.
 
 ## Authors
 
-* **Mustafa Al-Shebeeb** - *Initial work* - [mustafa0411](https://github.com/mustafa0411)
+* **Mustafa Al-Shebeeb** - *Main Author* - [mustafa0411](https://github.com/mustafa0411)
 
 ## License
 
@@ -51,6 +51,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * [NeuralNine](https://www.youtube.com/watch?v=v02KG5S_ESo&list=PLAwqZp-o6gRSY803wbTWuHu4lZRbMcFDY&index=14) - Initial Idea and inspiration
-* [Scientyficworld](https://scientyficworld.org/how-to-build-a-browser-using-python/) - Some of the source code used for the UI aspects
-* [Programming Hero](https://www.youtube.com/watch?v=z-5bZ8EoKu4&list=PLAwqZp-o6gRSY803wbTWuHu4lZRbMcFDY&index=15) - More insight on how to exactly make a browser application
 
